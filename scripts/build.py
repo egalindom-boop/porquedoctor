@@ -82,7 +82,9 @@ a.cat-pill:hover{text-decoration:none;background:var(--rojo2)}
 .sitefoot a{color:#9fb4c8}
 .sitefoot a:hover{color:#fff}
 .footnote{border-top:1px solid rgba(255,255,255,.14);margin-top:30px;padding-top:16px;color:#8b939b;font-size:.82rem}
-#cookie-bar{position:fixed;bottom:0;left:0;right:0;background:#14171a;color:#e4edf7;padding:14px 20px;display:none;z-index:1000;box-shadow:0 -2px 14px rgba(0,0,0,.35)}
+.footnote a{text-decoration:underline}
+#cookie-bar{position:fixed;bottom:0;left:0;right:0;background:#14171a;color:#e4edf7;padding:14px 20px;z-index:1000;box-shadow:0 -2px 14px rgba(0,0,0,.35);transform:translateY(110%);transition:transform .3s ease}
+#cookie-bar.visible{transform:translateY(0)}
 #cookie-bar .cb-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:space-between}
 #cookie-bar p{font-size:.85rem;margin:0;flex:1 1 380px}
 #cookie-bar a{color:#ff9c8c;text-decoration:underline}
@@ -104,10 +106,10 @@ COOKIE_JS = r"""
   var v=null;
   try{v=localStorage.getItem(KEY);}catch(e){}
   if(v==='accepted'){grant();}
-  else if(v!=='rejected'){var bar=document.getElementById('cookie-bar');if(bar){bar.style.display='block';}}
+  else if(v!=='rejected'){var bar=document.getElementById('cookie-bar');if(bar){bar.classList.add('visible');}}
   var a=document.getElementById('cb-accept'),r=document.getElementById('cb-reject');
-  if(a)a.addEventListener('click',function(){try{localStorage.setItem(KEY,'accepted');}catch(e){}grant();document.getElementById('cookie-bar').style.display='none';});
-  if(r)r.addEventListener('click',function(){try{localStorage.setItem(KEY,'rejected');}catch(e){}document.getElementById('cookie-bar').style.display='none';});
+  if(a)a.addEventListener('click',function(){try{localStorage.setItem(KEY,'accepted');}catch(e){}grant();document.getElementById('cookie-bar').classList.remove('visible');});
+  if(r)r.addEventListener('click',function(){try{localStorage.setItem(KEY,'rejected');}catch(e){}document.getElementById('cookie-bar').classList.remove('visible');});
 })();
 """
 
@@ -211,10 +213,11 @@ def first_image(html):
     return m.group(1) if m else None
 
 
-def card(p, small=False):
+def card(p, small=False, featured=False):
     cat = next((c['name'] for c in p['categories'] if c['name'] != 'Sin categoría'), 'Noticias')
     img = p.get('og_image')
-    thumb = f'<a class="thumb" href="/{p["slug"]}/"><img src="{img}" alt="{p["title"]}" loading="lazy"></a>' if img else ''
+    attrs = 'fetchpriority="high"' if featured else 'loading="lazy"'
+    thumb = f'<a class="thumb" href="/{p["slug"]}/"><img src="{img}" alt="{p["title"]}" {attrs}></a>' if img else ''
     exc = '' if small else f'<p class="excerpt">{p["excerpt"][:150]}…</p>'
     return f"""<article class="card">{thumb}<div class="body">
 <a class="cat-pill" href="/categoria/{slugify(cat)}/">{cat}</a>
@@ -283,7 +286,7 @@ def build():
     for i, pp in enumerate(pages_list):
         num = i + 1
         if num == 1:
-            destacado = card(pp[0])
+            destacado = card(pp[0], featured=True)
             rest = ''.join(card(x, small=True) for x in pp[1:])
             cuerpo = destacado + f'<div class="grid2">{rest}</div>'
         else:

@@ -1,0 +1,26 @@
+name: Importar imagenes originales
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  importar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Descargar imagenes
+        run: python scripts/importar_imagenes.py
+      - name: Commit
+        run: |
+          git config user.name "img-bot"
+          git config user.email "bot@porquedoctor.com"
+          git add raw_images
+          git commit -m "Importar imagenes originales" || exit 0
+          git pull --rebase -X ours origin main
+          git push origin main

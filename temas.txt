@@ -1,0 +1,49 @@
+# Formato: Categoría | Tema | enlace-sugerido (opcional)
+Dietética | Dieta mediterránea: por qué sigue siendo la más recomendada |
+Psicología | Ansiedad en adultos: síntomas y técnicas que funcionan |
+Pediatría | Fiebre en niños: cuándo preocuparse y cuándo no |
+Embarazo | Alimentación en el primer trimestre del embarazo |
+Estética | Ácido hialurónico: usos, mitos y precauciones |
+Noticias | Telemedicina en España: cómo ha cambiado la consulta médica | dricloud
+Deporte | Volver a correr después de los 40: guía segura |
+Odontología | Blanqueamiento dental: qué funciona y qué no | xdentalcloud
+Sexología | Deseo sexual y estrés: cómo se relacionan |
+Antiaging | Colágeno: qué dice la ciencia sobre los suplementos |
+Naturopatía | Plantas medicinales seguras para el resfriado |
+Fisioterapia | Dolor cervical por el móvil: ejercicios de corrección |
+Noticias | Vivir cerca del mar y salud: qué dice la evidencia | palmbeach
+Dietética | Ayuno intermitente: beneficios reales y riesgos |
+Psicología | Insomnio: higiene del sueño paso a paso |
+Pediatría | Rabietas: cómo gestionarlas sin gritos |
+Embarazo | Ejercicio durante el embarazo: qué sí y qué no |
+Estética | Protección solar: errores que aceleran el envejecimiento |
+Noticias | Historia clínica electrónica: derechos del paciente | dricloud
+Deporte | Entrenamiento de fuerza a partir de los 50 |
+Odontología | Ortodoncia invisible frente a brackets: comparativa | gestiondental
+Sexología | Menopausia y vida sexual: lo que nadie cuenta |
+Antiaging | Longevidad: hábitos con evidencia científica |
+Naturopatía | Probióticos: cuándo tienen sentido de verdad |
+Fisioterapia | Lumbalgia: ejercicios para el día a día |
+Noticias | Retirarse al sol: por qué Florida atrae a jubilados europeos | palmbeach
+Dietética | Azúcar oculto en alimentos procesados |
+Psicología | Burnout laboral: señales de alarma y salida |
+Pediatría | Pantallas y niños: recomendaciones por edad |
+Embarazo | Lactancia materna: dudas frecuentes del primer mes |
+Estética | Cuidado de la piel a partir de los 40 |
+Noticias | Cómo elegir software para una clínica: claves | mejorsoftware
+Deporte | Lesiones de rodilla en el running: prevención |
+Odontología | Caries en niños: prevención desde el primer diente |
+Sexología | Disfunción eréctil: causas médicas tratables |
+Antiaging | Piel y sueño: la conexión que rejuvenece |
+Naturopatía | Cúrcuma y antiinflamatorios naturales: evidencia |
+Fisioterapia | Teletrabajo y postura: montar un puesto saludable |
+Noticias | Gestión de citas online en clínicas: ventajas para el paciente | gestionmedica
+Dietética | Proteína: cuánta necesitas según tu edad |
+Psicología | Mindfulness: qué es y cómo empezar |
+Pediatría | Alergias alimentarias en bebés: introducción segura |
+Embarazo | Parto: señales de que ha llegado el momento |
+Estética | Medicina estética sin cirugía: opciones actuales |
+Noticias | Comprar casa en Florida: guía de salud y estilo de vida | palmbeach
+Deporte | Hidratación y deporte: lo que debes saber |
+Odontología | Implantes dentales: preguntas antes de decidirte | xdentalcloud
+Sexología | Comunicación en pareja y salud sexual |

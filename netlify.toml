@@ -1,0 +1,13 @@
+[build]
+  publish = "site"
+  command = "python3 scripts/build.py"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

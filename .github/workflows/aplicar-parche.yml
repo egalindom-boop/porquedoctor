@@ -1,0 +1,26 @@
+name: Aplicar parche breadcrumbs
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  parchear:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Aplicar parche
+        run: python scripts/parche_breadcrumb.py
+      - name: Commit
+        run: |
+          git config user.name "patch-bot"
+          git config user.email "bot@web.com"
+          git add scripts/build.py
+          git commit -m "Anadir BreadcrumbList a paginas de post (fix Search Console)" || exit 0
+          git pull --rebase -X ours origin main
+          git push origin main

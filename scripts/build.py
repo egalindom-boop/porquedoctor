@@ -352,7 +352,17 @@ def build():
         }
         if p['og_image']:
             schema['image'] = DOMAIN + p['og_image']
-        extra = f"""<meta property="og:title" content="{p['title']}">
+        cat_bc = next((c['name'] for c in p['categories'] if c['name'] not in ('Sin categoría', 'Software Medico')), 'Noticias')
+        breadcrumb = json.dumps({
+            '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+            'itemListElement': [
+                {'@type': 'ListItem', 'position': 1, 'name': 'Inicio', 'item': DOMAIN + '/'},
+                {'@type': 'ListItem', 'position': 2, 'name': cat_bc, 'item': f'{DOMAIN}/categoria/{slugify(cat_bc)}/'},
+                {'@type': 'ListItem', 'position': 3, 'name': p['title'], 'item': canonical},
+            ],
+        }, ensure_ascii=False)
+        extra = f"""<script type="application/ld+json">{breadcrumb}</script>
+<meta property="og:title" content="{p['title']}">
 <meta property="og:description" content="{p['excerpt'][:158]}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="{canonical}">

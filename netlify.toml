@@ -1,6 +1,6 @@
 [build]
   publish = "site"
-  command = "python3 scripts/build.py"
+  command = "python3 -m pip install --quiet pillow && python3 scripts/build.py"
 
 [[headers]]
   for = "/images/*"

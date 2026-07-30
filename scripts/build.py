@@ -227,6 +227,33 @@ def card(p, small=False, featured=False):
 </div></article>"""
 
 
+
+def _hacer_exportador():
+    """Convierte jpg/png a WebP (max 1200px de ancho); si no hay Pillow, copia tal cual."""
+    try:
+        from PIL import Image
+    except ImportError:
+        Image = None
+
+    def exportar(src, destdir, basename):
+        stem, dot, ext = basename.rpartition('.')
+        ext = ext.lower()
+        if Image is None or ext not in ('jpg', 'jpeg', 'png'):
+            shutil.copy2(src, os.path.join(destdir, basename))
+            return
+        try:
+            im = Image.open(src)
+            if im.mode in ('P', 'RGBA'):
+                im = im.convert('RGBA') if 'A' in im.getbands() else im.convert('RGB')
+            elif im.mode != 'RGB':
+                im = im.convert('RGB')
+            if im.width > 1200:
+                im = im.resize((1200, int(im.height * 1200 / im.width)), Image.LANCZOS)
+            im.save(os.path.join(destdir, f'{stem}.webp'), 'WEBP', quality=82, method=4)
+        except Exception:
+            shutil.copy2(src, os.path.join(destdir, basename))
+    return exportar
+
 def build():
     posts = json.load(open(os.path.join(ROOT, 'posts.json'), encoding='utf-8'))
     pages = json.load(open(os.path.join(ROOT, 'pages_raw.json'), encoding='utf-8'))
@@ -254,10 +281,11 @@ def build():
         os.makedirs(os.path.join(SITE, d), exist_ok=True)
     open(os.path.join(SITE, 'css', 'estilo.css'), 'w').write(CSS)
     open(os.path.join(SITE, 'js', 'cookies.js'), 'w').write(COOKIE_JS)
+    exportar_imagen_optimizada = _hacer_exportador()
     for img in used:
         src = os.path.join(RAW_IMAGES, img)
         if os.path.exists(src):
-            shutil.copy2(src, os.path.join(SITE, 'images', img))
+            exportar_imagen_optimizada(src, os.path.join(SITE, 'images'), img)
     # logo si existe
     if os.path.exists(os.path.join(RAW_IMAGES, 'pqd.png')):
         shutil.copy2(os.path.join(RAW_IMAGES, 'pqd.png'), os.path.join(SITE, 'images', 'pqd.png'))

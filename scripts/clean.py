@@ -136,9 +136,11 @@ def rewrite_img_tag(img_tag, available_images, used_images):
     if basename not in available_images:
         return None
     used_images.add(basename)
+    stem, dot, ext = basename.rpartition('.')
+    web_name = f'{stem}.webp' if ext.lower() in ('jpg', 'jpeg', 'png') else basename
     alt_m = re.search(r'alt="([^"]*)"', img_tag)
     alt = alt_m.group(1) if alt_m else ''
-    return (f'<img src="/images/{basename}" alt="{alt}" loading="lazy" decoding="async" class="post-img">')
+    return (f'<img src="/images/{web_name}" alt="{alt}" loading="lazy" decoding="async" class="post-img">')
 
 
 def clean_content(html, available_images, used_images):

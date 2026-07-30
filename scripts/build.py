@@ -125,8 +125,8 @@ def head(title, description, canonical, extra=''):
 <link rel="canonical" href="{canonical}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=PT+Sans:wght@400;700&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=PT+Sans:wght@400;700&display=optional" rel="stylesheet"></noscript>
 <style>{CSS}</style>
 <link rel="alternate" type="application/rss+xml" title="Por qué Doctor RSS" href="/rss.xml">
 {extra}
